@@ -1,4 +1,4 @@
-package lk.ijse.possystembackend;
+package lk.ijse.posSystemBackend;
 
 import java.io.*;
 
