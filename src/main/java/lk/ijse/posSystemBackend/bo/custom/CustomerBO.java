@@ -1,4 +1,6 @@
 package lk.ijse.posSystemBackend.bo.custom;
 
-public interface CustomerBO {
+import lk.ijse.posSystemBackend.bo.SuperBO;
+
+public interface CustomerBO extends SuperBO {
 }

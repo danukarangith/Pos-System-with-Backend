@@ -1,4 +1,4 @@
 package lk.ijse.posSystemBackend.bo.custom;
 
-public class ItemBO {
+public interface ItemBO {
 }
