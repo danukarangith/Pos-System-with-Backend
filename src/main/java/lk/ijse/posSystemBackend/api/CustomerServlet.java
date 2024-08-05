@@ -1,4 +1,8 @@
 package lk.ijse.posSystemBackend.api;
 
-public class CustomerServlet {
+import jakarta.servlet.http.HttpServlet;
+
+public class CustomerServlet extends HttpServlet {
+
+
 }
