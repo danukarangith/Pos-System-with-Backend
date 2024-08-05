@@ -1,4 +1,4 @@
 package lk.ijse.posSystemBackend.bo;
 
-public interface SuperBo {
+public interface SuperBO {
 }
