@@ -1,4 +1,7 @@
 package lk.ijse.posSystemBackend.dao.custom;
 
-public interface OrderDAO {
+import com.mysql.cj.x.protobuf.MysqlxCrud;
+import lk.ijse.posSystemBackend.dao.CrudDAO;
+
+public interface OrderDAO extends CrudDAO<MysqlxCrud.Order, String> {
 }
