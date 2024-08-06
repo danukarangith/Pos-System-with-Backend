@@ -68,6 +68,48 @@ public void init() {
 //            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Salary is empty or invalid");
 //            return;
 //        }
+        try ( Connection connection = source.getConnection();){
+
+            boolean saveCustomer = customerBO.saveCustomer(new CustomerDTO(id, name, address, salary),connection);
+            if (saveCustomer) {
+                resp.setStatus(HttpServletResponse.SC_CREATED);
+                resp.getWriter().write("Added customer successfully");
+            }else {
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save the customer");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Jsonb jsonb = JsonbBuilder.create();
+        CustomerDTO customerDTO = jsonb.fromJson(req.getReader(), CustomerDTO.class);
+        String id = customerDTO.getId();
+        String name = customerDTO.getName();
+        String address = customerDTO.getAddress();
+        double salary = customerDTO.getSalary();
+
+        try ( Connection connection = source.getConnection();){
+            boolean updateCustomer = customerBO.updateCustomer(new CustomerDTO(id, name, address, salary),connection);
+            if (updateCustomer) {
+                resp.setStatus(HttpServletResponse.SC_CREATED);
+                resp.getWriter().write("Updated customer successfully");
+            }else {
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to update the customer");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     }
