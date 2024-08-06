@@ -32,5 +32,18 @@ public void init() {
         throw new RuntimeException(e);
     }
 }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection connection = source.getConnection();){
+
+            ArrayList<CustomerDTO> allCustomers = customerBO.getAllCustomers(connection);
+            resp.setContentType("application/json");
+            Jsonb jsonb = JsonbBuilder.create();
+            jsonb.toJson(allCustomers,resp.getWriter());
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
 
 }
