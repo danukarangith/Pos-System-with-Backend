@@ -19,4 +19,29 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
         return allCustomers;
     }
+
+    @Override
+    public boolean save(Customer entity,Connection connection) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute(connection,"INSERT INTO customer (id,name, address,salary) VALUES (?,?,?,?)", entity.getId(), entity.getName(), entity.getAddress() ,entity.getSalary());
+    }
+
+    @Override
+    public boolean update(Customer entity,Connection connection) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute(connection,"UPDATE customer SET name=?, address=?, salary=? WHERE id=?", entity.getName(), entity.getAddress(), entity.getSalary(),entity.getId());
+    }
+
+    @Override
+    public boolean delete(String code,Connection connection) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute(connection,"DELETE FROM customer WHERE id=?", code);
+    }
+
+    @Override
+    public boolean exist(String s, Connection connection) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public Customer search(String code, Connection connection) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }
