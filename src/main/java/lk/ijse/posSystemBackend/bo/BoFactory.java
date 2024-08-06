@@ -1,5 +1,10 @@
 package lk.ijse.posSystemBackend.bo;
 
+import lk.ijse.posSystemBackend.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.posSystemBackend.bo.custom.impl.ItemBOImpl;
+import lk.ijse.posSystemBackend.bo.custom.impl.OrderDetailBOImpl;
+import lk.ijse.posSystemBackend.bo.custom.impl.PurchaseOrderBOImpl;
+
 public class BoFactory {
     private static BoFactory boFactory;
 
