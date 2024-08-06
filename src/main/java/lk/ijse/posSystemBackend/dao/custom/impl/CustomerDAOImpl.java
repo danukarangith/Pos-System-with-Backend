@@ -1,4 +1,6 @@
 package lk.ijse.posSystemBackend.dao.custom.impl;
 
-public class CustomerDAOImpl {
+import lk.ijse.posSystemBackend.dao.custom.CustomerDAO;
+
+public class CustomerDAOImpl implements CustomerDAO {
 }

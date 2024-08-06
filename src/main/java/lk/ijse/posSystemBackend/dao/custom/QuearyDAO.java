@@ -1,4 +1,6 @@
 package lk.ijse.posSystemBackend.dao.custom;
 
-public interface QuearyDAO {
+import lk.ijse.posSystemBackend.dao.SuperDAO;
+
+public interface QuearyDAO extends SuperDAO {
 }
