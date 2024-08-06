@@ -1,4 +1,8 @@
 package lk.ijse.posSystemBackend.api;
 
-public class ItemServlet {
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+
+@WebServlet(urlPatterns = "/items")
+public class ItemServlet extends HttpServlet {
 }
