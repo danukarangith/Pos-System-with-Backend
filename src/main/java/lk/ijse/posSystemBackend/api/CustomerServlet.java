@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.posSystemBackend.bo.BoFactory;
+import lk.ijse.posSystemBackend.bo.custom.CustomerBO;
 import lk.ijse.posSystemBackend.dto.CustomerDTO;
 
 import javax.naming.InitialContext;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/Customers")
 public class CustomerServlet extends HttpServlet {
+    CustomerBO customerBO = BoFactory.getBoFactory().getBO(BoFactory.BOTypes.CUSTOMER_BO);
     private DataSource source;
 
 public void init() {
