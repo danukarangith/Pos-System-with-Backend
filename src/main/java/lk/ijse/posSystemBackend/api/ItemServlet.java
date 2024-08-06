@@ -56,19 +56,19 @@ public class ItemServlet extends HttpServlet {
         int qty = itemDTO.getQtyOnHand();
 
 
-        if(code==null || !code.matches("^(P0)[0-9]{3}$")){
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Item Code is empty or invalid");
-            return;
-        } else if (description == null || !description.matches("^[A-Za-z ]{5,}$")) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Description is empty or invalid");
-            return;
-        } else if (unitPrice < 0.0) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unit Price is empty or invalid");
-            return;
-        }else if (qty < 0 ){
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quantity is empty or invalid");
-            return;
-        }
+//        if(code==null || !code.matches("^(P0)[0-9]{3}$")){
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Item Code is empty or invalid");
+//            return;
+//        } else if (description == null || !description.matches("^[A-Za-z ]{5,}$")) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Description is empty or invalid");
+//            return;
+//        } else if (unitPrice < 0.0) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unit Price is empty or invalid");
+//            return;
+//        }else if (qty < 0 ){
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quantity is empty or invalid");
+//            return;
+//        }
 
         try(Connection connection = source.getConnection();) {
 
