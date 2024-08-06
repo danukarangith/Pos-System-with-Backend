@@ -113,4 +113,21 @@ public class ItemServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("code");
+
+        try(Connection connection = source.getConnection();) {
+            boolean deleteItem = itemBO.deleteItem(id, source.getConnection());
+            if(deleteItem){
+                resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }else{
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to delete the item!");
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
 }
