@@ -87,4 +87,30 @@ public class ItemServlet extends HttpServlet {
         }
 
     }
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Jsonb jsonb = JsonbBuilder.create();
+        ItemDTO itemDTO = jsonb.fromJson(req.getReader(), ItemDTO.class);
+        String code = itemDTO.getCode();
+        String description = itemDTO.getDescription();
+        double unitPrice = itemDTO.getUnitPrice();
+        int qty = itemDTO.getQtyOnHand();
+
+        try(Connection connection = source.getConnection();) {
+
+            boolean updateItem = itemBO.updateItem(new ItemDTO(code,description,unitPrice,qty), connection);
+            if (updateItem) {
+                resp.setStatus(HttpServletResponse.SC_CREATED);
+                resp.getWriter().write("Updated item successfully");
+            }else {
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to update the item");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
