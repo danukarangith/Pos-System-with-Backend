@@ -45,5 +45,29 @@ public void init() {
         }
 
     }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Jsonb jsonb = JsonbBuilder.create();
+        CustomerDTO customerDTO = jsonb.fromJson(req.getReader(), CustomerDTO.class);
+        String id = customerDTO.getId();
+        String name = customerDTO.getName();
+        String address = customerDTO.getAddress();
+        double salary = customerDTO.getSalary();
 
-}
+
+//        if(id==null || !id.matches("^(C0)[0-9]{3}$")){
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is empty or invalid");
+//            return;
+//        } else if (name == null || !name.matches("^[A-Za-z ]{5,}$")) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Name is empty or invalid");
+//            return;
+//        } else if (address == null) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Address is empty or invalid");
+//            return;
+//        }else if (salary < 0.0 ){
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Salary is empty or invalid");
+//            return;
+//        }
+    }
+
+    }
