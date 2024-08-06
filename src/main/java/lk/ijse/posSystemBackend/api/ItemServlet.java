@@ -45,4 +45,46 @@ public class ItemServlet extends HttpServlet {
             throwables.printStackTrace();
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Jsonb jsonb = JsonbBuilder.create();
+        ItemDTO itemDTO = jsonb.fromJson(req.getReader(), ItemDTO.class);
+        String code = itemDTO.getCode();
+        String description = itemDTO.getDescription();
+        double unitPrice = itemDTO.getUnitPrice();
+        int qty = itemDTO.getQtyOnHand();
+
+
+        if(code==null || !code.matches("^(P0)[0-9]{3}$")){
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Item Code is empty or invalid");
+            return;
+        } else if (description == null || !description.matches("^[A-Za-z ]{5,}$")) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Description is empty or invalid");
+            return;
+        } else if (unitPrice < 0.0) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unit Price is empty or invalid");
+            return;
+        }else if (qty < 0 ){
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quantity is empty or invalid");
+            return;
+        }
+
+        try(Connection connection = source.getConnection();) {
+
+            boolean saveItem = itemBO.saveItem(new ItemDTO(code,description,unitPrice,qty), connection);
+            if (saveItem) {
+                resp.setStatus(HttpServletResponse.SC_CREATED);
+                resp.getWriter().write("Added item successfully");
+            }else {
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save the item");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
