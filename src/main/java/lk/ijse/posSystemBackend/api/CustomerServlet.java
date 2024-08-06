@@ -111,5 +111,23 @@ public void init() {
             e.printStackTrace();
         }
     }
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+
+        try (Connection connection = source.getConnection();){
+
+            boolean deleteCustomer = customerBO.deleteCustomer(id,connection);
+            if(deleteCustomer){
+                resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }else{
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to delete the customer!");
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
 
     }
