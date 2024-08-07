@@ -115,7 +115,7 @@ public class ItemServlet extends HttpServlet {
     }
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("code");
+        String id = req.getParameter("id");
 
         try(Connection connection = source.getConnection();) {
             boolean deleteItem = itemBO.deleteItem(id, source.getConnection());
