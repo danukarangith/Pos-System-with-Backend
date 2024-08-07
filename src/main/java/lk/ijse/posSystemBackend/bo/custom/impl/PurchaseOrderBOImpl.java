@@ -46,7 +46,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
             }
 
             for (OrderDetailDTO odDTO : dto.getOrderDetaisList()) {
-                OrderDetails orderDetailsEntity = new OrderDetails(odDTO.getOrderId(), odDTO.getItemCode(), odDTO.getQty(), odDTO.getUnitPrice());
+                OrderDetails orderDetailsEntity = new OrderDetails(odDTO.getOid(), odDTO.getCode(), odDTO.getQty(), odDTO.getPayment());
                 try (Connection connection3 = source.getConnection();){
                     boolean odAdded = orderDetailsDAO.save(orderDetailsEntity, connection3);
                     if (!odAdded) {
