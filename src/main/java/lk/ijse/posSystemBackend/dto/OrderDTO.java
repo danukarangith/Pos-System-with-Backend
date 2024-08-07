@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,6 +17,6 @@ public class OrderDTO {
     private String id;
     private LocalDate date;
     private String customerId;
-    List<OrderDetailDTO> orderDetaisList;
+   private List<OrderDetailDTO> orderDetaisList=new ArrayList<>();
 
 }
