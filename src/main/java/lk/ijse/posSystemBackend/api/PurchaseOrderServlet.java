@@ -46,23 +46,23 @@ public class PurchaseOrderServlet extends HttpServlet {
         List<OrderDetailDTO> detaisList = orderDTO.getOrderDetaisList();
 
 
-        if(id==null || !id.matches("^(OR)[0-9]{3}$")){
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is empty or invalid");
-            return;
-        } else if (date == null ) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Date is empty or invalid");
-            return;
-        } else if (customerId == null) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "CustomerId is empty or invalid");
-            return;
-        }else if ( detaisList==null){
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Detail list is empty or invalid");
-            return;
-        }
+//        if(id==null || !id.matches("^(OR)[0-9]{3}$")){
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is empty or invalid");
+//            return;
+//        } else if (date == null ) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Date is empty or invalid");
+//            return;
+//        } else if (customerId == null) {
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "CustomerId is empty or invalid");
+//            return;
+//        }else if ( detaisList==null){
+//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Detail list is empty or invalid");
+//            return;
+//        }
 
         try {
 
-            boolean saveOrder = poBO.saveOrder(new OrderDTO(id, date, customerId, detaisList),source);
+            boolean saveOrder = poBO.saveOrder( orderDTO,source);
             if (saveOrder) {
                 resp.setStatus(HttpServletResponse.SC_CREATED);
                 resp.getWriter().write("Added order successfully");
