@@ -41,25 +41,16 @@ This repository contains the backend API for a Post System, developed using Java
     ```sql
     CREATE DATABASE post_system;
     ```
-4. Update the `application.properties` file with your database and Azure AD credentials:
-    ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/post_system
-    spring.datasource.username=your_db_username
-    spring.datasource.password=your_db_password
-
-    azure.activedirectory.client-id=your_aad_client_id
-    azure.activedirectory.client-secret=your_aad_client_secret
-    azure.activedirectory.tenant-id=your_aad_tenant_id
+ 
     ```
 
-5. Build the project with Maven:
+4. Build the project with Maven:
     ```bash
     mvn clean install
     ```
 
-6. Run the application:
-    ```bash
-    mvn spring-boot:run
+5. Run the application:
+ 
     ```
 
 ### Running Tests
