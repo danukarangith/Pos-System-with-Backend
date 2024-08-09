@@ -42,7 +42,6 @@ This repository contains the backend API for a Post System, developed using Java
     CREATE DATABASE post_system;
     ```
  
-    ```
 
 4. Build the project with Maven:
     ```bash
@@ -51,8 +50,11 @@ This repository contains the backend API for a Post System, developed using Java
 
 5. Run the application:
  
-    ```
+ 
 
 ### Running Tests
 
  test with postman : https://documenter.getpostman.com/view/36300872/2sA3s1psGt
+ 
+### Frontend Link
+https://github.com/danukarangith/Pos-System
